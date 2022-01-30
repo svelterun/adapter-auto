@@ -1,0 +1,45 @@
+{
+  "name": "@svelterun/adapter-auto",
+  "version": "1.0.0-next.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Nicholas Berlette",
+    "email": "nick@berlette.com"
+  },
+  "homepage": "https://adapters.svelte.run",
+  "repository": "svelterun/adapter-auto",
+  "readme": "https://github.com/svelterun/adapter-auto#readme",
+  "bugs": "https://github.com/svelterun/adapter-auto/issues",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    },
+    "./index.d.ts": "./index.d.ts",
+    "./package.json": "./package.json"
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "files",
+    "index.js",
+    "index.d.ts",
+    "adapters.js"
+  ],
+  "dependencies": {
+    "@sveltejs/adapter-cloudflare": "next",
+    "@sveltejs/adapter-cloudflare-workers": "next",
+    "@sveltejs/adapter-netlify": "next",
+    "@sveltejs/adapter-vercel": "next",
+    "@sveltejs/adapter-static": "next"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore \"**/*.{ts,js,svelte}\" && npm run check-format",
+    "format": "npm run check-format -- --write",
+    "check-format": "prettier --check . --config ../../.prettierrc --ignore-path .gitignore"
+  }
+}
