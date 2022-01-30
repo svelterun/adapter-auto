@@ -1,2 +1,11 @@
 .DS_Store
 node_modules
+.*.log
+*.log
+*.env
+*.pem
+.env.*
+.env.*.local
+*.tar.gz
+*.zip
+*.tgz
