@@ -1,5 +1,10 @@
 export const adapters = [
 	{
+		name: 'Begin',
+		test: () => !!process.env.BEGIN,
+		module: '@sveltejs/adapter-begin'
+	},
+	{
 		name: 'Vercel',
 		test: () => !!process.env.VERCEL,
 		module: '@sveltejs/adapter-vercel'
@@ -11,7 +16,7 @@ export const adapters = [
 	},
 	{
 		name: 'Cloudflare Workers',
-		test: () => (!!process.env.CF_WORKER || !!process.env.CF_WORKERS),
+		test: () => !!process.env.CF_WORKER || !!process.env.CF_WORKERS,
 		module: '@sveltejs/adapter-cloudflare-workers'
 	}
 	{
@@ -20,9 +25,20 @@ export const adapters = [
 		module: '@sveltejs/adapter-netlify'
 	},
 	{
-		name: 'Static',
-		test: () => !!process.env.STATIC,
-		module: '@sveltejs/adapter-static'
+                name: 'Static',
+                test: () => !!process.env.STATIC,
+                module: '@sveltejs/adapter-static'
+        },
+	{
+		name: 'Node.js',
+		test: () => !!process.env.NODE || (
+			!process.env.VERCEL && 
+			!process.env.BEGIN && 
+			!process.env.CF_PAGES && 
+			!process.env.CF_WORKER && 
+			!process.env.NETLIFY &&
+			!process.env.STATIC
+		),
+		module: '@sveltejs/adapter-node'
 	}
-];
-
+};
