@@ -15,9 +15,7 @@
   "bugs": "https://github.com/svelterun/adapter-auto/issues",
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./index.js"
-    },
+    ".": "./index.js",
     "./index.d.ts": "./index.d.ts",
     "./package.json": "./package.json"
   },
@@ -30,16 +28,39 @@
     "index.d.ts",
     "adapters.js"
   ],
+  "eslintConfig": {
+    "root": true,
+    "extends": "@sveltejs",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "settings": {
+      "import/ignore": "/template/"
+    }
+  },
+  "prettier": {
+    "useTabs": true,
+    "tabSize": 2,
+    "trailingComma": "es5",
+    "semi": true,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "proseWrap": "preserve",
+    "printWidth": 120
+  },
   "dependencies": {
+    "@sveltejs/adapter-begin": "next",
     "@sveltejs/adapter-cloudflare": "next",
     "@sveltejs/adapter-cloudflare-workers": "next",
     "@sveltejs/adapter-netlify": "next",
+    "@sveltejs/adapter-node": "next",
     "@sveltejs/adapter-static": "next",
     "@sveltejs/adapter-vercel": "next"
   },
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore \"**/*.{ts,js,svelte}\" && npm run check-format",
-    "format": "npm run check-format -- --write",
-    "check-format": "prettier --check . --config ../../.prettierrc --ignore-path .gitignore"
+    "eslint": "eslint --ignore-path .gitignore \"**/*.{ts,js,svelte}\"",
+    "prettier": "prettier --ignore-path .gitignore --check \"**/*.{ts,js,svelte}\"",
+    "lint": "nr eslint; nr prettier",
+    "format": "nr eslint -- --fix; nr prettier -- --write"
   }
 }
